@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pdfplumber
+python-docx
+pytesseract
+pdf2image
+Pillow
+spacy
+transformers
+sentence-transformers
+faiss-cpu
+requests
+openai
