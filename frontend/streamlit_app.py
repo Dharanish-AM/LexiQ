@@ -1,11 +1,13 @@
 # frontend/streamlit_app.py
-import streamlit as st
+import streamlit as st # type: ignore
 import requests
 import json
 
-API_URL = st.secrets.get("API_URL", "http://backend:8000")  # docker-compose friendly
+import os
 
-st.title("DemystifyLegal — Upload a legal doc")
+API_URL = os.getenv("API_URL", "http://localhost:8000")
+
+st.title("⚖️ LexiQ — Demystify Legal Contracts")
 
 uploaded = st.file_uploader("Upload PDF/DOCX", type=["pdf","docx"])
 if uploaded:

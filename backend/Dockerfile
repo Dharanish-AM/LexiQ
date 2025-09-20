@@ -2,8 +2,12 @@ FROM python:3.10-slim
 
 # Install system dependencies
 RUN apt-get update && \
-    apt-get install -y build-essential tesseract-ocr poppler-utils curl && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        tesseract-ocr \
+        poppler-utils \
+        curl \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -21,6 +25,9 @@ COPY app /app
 
 # Expose port
 EXPOSE 8000
+
+# Set environment variable to avoid issues with spaCy model path
+ENV SPACY_MODEL=en_core_web_sm
 
 # Start the backend server
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

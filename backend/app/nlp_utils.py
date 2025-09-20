@@ -55,7 +55,7 @@ def simplify_with_openai(clause_text):
 def simplify_local(clause_text):
     # fallback using small flan-t5
     prompt = f"Simplify this legal clause into simple English and list obligations:\n\n{clause_text}"
-    out = generator(prompt, max_length=120)[0]["generated_text"]
+    out = generator(prompt, max_new_tokens=120)[0]["generated_text"]
     return out
 
 risk_keywords = ["indemnity","liabilit","penalty","terminate","auto renew","automatic renewal","breach","forfeit","damages"]
